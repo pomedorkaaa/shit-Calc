@@ -1,57 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Конвертер чисел</title>
     <style>
-      html{
+        html {
             background: linear-gradient(to bottom, #4a148c, #7b1fa2);
             color: white;
             min-height: 100vh;
-      }
-        body {
-          height: 100%;
-            margin: auto;
-            max-width: 360px;
-            font-family: Arial, sans-serif;
-            padding: 20px;
+            font-size: 16px; /* Размер шрифта по умолчанию */
         }
-
+    
+        body {
+            height: 100%;
+            margin: auto;
+            max-width: 80%; /* Увеличенная ширина блока и сделанная адаптивной */
+            font-family: Arial, sans-serif;
+            padding: 8px; /* Отступы в пикселях */
+        }
+    
         h1 {
             text-align: center;
+            font-size: 28px; /* Размер заголовка по умолчанию */
         }
-
+    
         label {
             display: block;
-            margin-top: 10px;
+            margin-top: 4px; /* Отступы в пикселях */
         }
-
-        input, button {
-            width: 98%;
-            padding: 5px 0px 5px 5px;
-            margin-top: 8px;
-            font-weight: 600;
-            font-size: 20px;
-        }
-
+    
+        input,
         button {
-          width: 100%;
+            width: 100%;
+            padding: 4px 0;
+            margin-top: 4px; /* Отступы в пикселях */
+            font-weight: 600;
+            font-size: 16px; /* Размер шрифта по умолчанию */
+        }
+    
+        button {
             background-color: #b50202;
             color: white;
             border: none;
             cursor: pointer;
-            padding: 10px;
-            margin-top: 15px;
+            padding: 8px;
+            margin-top: 8px; /* Отступы в пикселях */
+            font-size: 16px; /* Размер шрифта по умолчанию */
         }
-
+    
         button:hover {
             background-color: #ef1838;
         }
-
+    
         p {
-            margin-top: 10px;
+            margin-top: 4px; /* Отступы в пикселях */
             font-weight: bold;
+            font-size: 16px; /* Размер шрифта по умолчанию */
+        }
+    
+        /* Медиа-запросы для разных брейкпоинтов и изменение размеров шрифта в пикселях */
+        @media screen and (max-width: 784px) {
+            html {
+                font-size: 14px;
+            }
+    
+            h1 {
+                font-size: 24px;
+            }
+    
+            input,
+            button {
+                font-size: 14px;
+            }
+    
+            button {
+                padding: 6px;
+                margin-top: 6px;
+            }
+    
+            p {
+                font-size: 14px;
+            }
         }
     </style>
+    
+    
+    
+    
+    
+    
 </head>
 <body>
     <h1>Конвертер чисел</h1>
