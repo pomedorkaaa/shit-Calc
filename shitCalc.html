@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Конвертер чисел</title>
+    <style>
+      html{
+            background: linear-gradient(to bottom, #4a148c, #7b1fa2);
+            color: white;
+            min-height: 100vh;
+      }
+        body {
+          height: 100%;
+            margin: auto;
+            max-width: 360px;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, button {
+            width: 98%;
+            padding: 5px 0px 5px 5px;
+            margin-top: 8px;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        button {
+          width: 100%;
+            background-color: #b50202;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #ef1838;
+        }
+
+        p {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Конвертер чисел</h1>
+    <label for="inputNumber">Введите число:</label>
+    <input type="text" id="inputNumber" placeholder="Введите число"><br>
+
+    <label for="fromBase">Исходная система счисления:</label>
+    <input type="number" id="fromBase" placeholder="Введите систему счисления"><br>
+
+    <label for="toBase1">Первая целевая система счисления:</label>
+    <input type="number" id="toBase1" placeholder="Введите систему счисления"><br>
+
+    <label for="toBase2">Вторая целевая система счисления:</label>
+    <input type="number" id="toBase2" placeholder="Введите систему счисления"><br>
+
+    <label for="toBase3">Третья целевая система счисления:</label>
+    <input type="number" id="toBase3" placeholder="Введите систему счисления"><br>
+
+    <label for="toBase4">Четвертая целевая система счисления:</label>
+    <input type="number" id="toBase4" placeholder="Введите систему счисления"><br>
+
+    <button onclick="convert()">Перевести</button>
+
+    <p id="result"></p>
+
+    <script>
+        function removeTrailingZeros(str) {
+            const parts = str.split('.');
+            if (parts.length === 2) {
+                const decimalPart = parts[1];
+                const trimmedDecimalPart = decimalPart.replace(/0+$/, '');
+                return trimmedDecimalPart.length > 0 ? `${parts[0]}.${trimmedDecimalPart}` : parts[0];
+            }
+            return str;
+        }
+
+        function convert() {
+            const inputNumberElement = document.getElementById('inputNumber');
+            const fromBaseElement = document.getElementById('fromBase');
+            const toBase1Element = document.getElementById('toBase1');
+            const toBase2Element = document.getElementById('toBase2');
+            const toBase3Element = document.getElementById('toBase3');
+            const toBase4Element = document.getElementById('toBase4');
+
+            const inputNumber = inputNumberElement.value;
+            const fromBase = parseInt(fromBaseElement.value);
+            const toBase1 = parseInt(toBase1Element.value);
+            const toBase2 = parseInt(toBase2Element.value);
+            const toBase3 = parseInt(toBase3Element.value);
+            const toBase4 = parseInt(toBase4Element.value);
+
+            if (!inputNumber || isNaN(fromBase) || isNaN(toBase1) || isNaN(toBase2) || isNaN(toBase3) || isNaN(toBase4)) {
+                alert("Пожалуйста, введите корректные значения.");
+                return;
+            }
+
+            // Парсим число, поддерживая дробные значения
+            const decimalValue = parseFloat(inputNumber, fromBase);
+
+            if (isNaN(decimalValue)) {
+                alert("Пожалуйста, введите корректное число.");
+                return;
+            }
+
+            // Округляем дробную часть до пяти символов после запятой
+            const roundedValue = Number(decimalValue.toFixed(5));
+
+            const binaryValue = parseFloat(roundedValue.toString(toBase1)).toFixed(5);
+            const octalValue = parseFloat(roundedValue.toString(toBase2)).toFixed(5);
+
+            // Перевод в 16-ричную систему счисления
+            const hexIntegerPart = parseInt(roundedValue);
+            const hexDecimalPart = (roundedValue - hexIntegerPart).toString(16);
+
+            // Ограничиваем дробную часть в 16-ричной системе до пяти символов
+            let hexDecimalPartLimited = hexDecimalPart.length > 2 ? hexDecimalPart.substring(2, 7) : '';
+
+            // Убираем незначимые нули из дробной части
+            hexDecimalPartLimited = removeTrailingZeros(hexDecimalPartLimited);
+            
+            const hexadecimalValue = hexDecimalPartLimited.length > 0 ? `${hexIntegerPart.toString(16)}.${hexDecimalPartLimited}` : hexIntegerPart.toString(16);
+
+            const originalValue = parseFloat(roundedValue.toString(toBase4)).toFixed(5);
+
+            // Убираем незначимые нули из последнего результата
+            const originalValueTrimmed = removeTrailingZeros(originalValue);
+
+            const result = `(${inputNumber})${fromBase} => (${binaryValue})${toBase1} => (${octalValue})${toBase2} => (${hexadecimalValue})${toBase3} => (${originalValueTrimmed})${toBase4}`.toUpperCase();
+
+            document.getElementById('result').innerText = result;
+
+            // Очищаем поля ввода
+            inputNumberElement.value = '';
+            fromBaseElement.value = '';
+            toBase1Element.value = '';
+            toBase2Element.value = '';
+            toBase3Element.value = '';
+            toBase4Element.value = '';
+        }
+    </script>
+</body>
+</html>
