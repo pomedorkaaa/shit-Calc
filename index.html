@@ -6,7 +6,7 @@
             background: linear-gradient(to bottom, #4a148c, #7b1fa2);
             color: white;
             min-height: 100vh;
-            font-size: 16px; /* Размер шрифта по умолчанию */
+            font-size: 2vmax; /* Уменьшенный размер шрифта в зависимости от ширины вьюпорта */
         }
     
         body {
@@ -14,26 +14,26 @@
             margin: auto;
             max-width: 80%; /* Увеличенная ширина блока и сделанная адаптивной */
             font-family: Arial, sans-serif;
-            padding: 8px; /* Отступы в пикселях */
+            padding: 0.5rem; /* Уменьшенные отступы */
         }
     
         h1 {
             text-align: center;
-            font-size: 28px; /* Размер заголовка по умолчанию */
+            font-size: 3vmax; /* Уменьшенный размер заголовка */
         }
     
         label {
             display: block;
-            margin-top: 4px; /* Отступы в пикселях */
+            margin-top: 0.25rem; /* Уменьшенные отступы */
         }
     
         input,
         button {
             width: 100%;
-            padding: 4px 0;
-            margin-top: 4px; /* Отступы в пикселях */
+            padding: 0.25rem 0;
+            margin-top: 0.25rem; /* Уменьшенные отступы */
             font-weight: 600;
-            font-size: 16px; /* Размер шрифта по умолчанию */
+            font-size: 3vmax; /* Уменьшенный размер шрифта */
         }
     
         button {
@@ -41,9 +41,9 @@
             color: white;
             border: none;
             cursor: pointer;
-            padding: 8px;
-            margin-top: 8px; /* Отступы в пикселях */
-            font-size: 16px; /* Размер шрифта по умолчанию */
+            padding: 0.5rem;
+            margin-top: 0.5rem; /* Уменьшенные отступы */
+            font-size: 3vmax; /* Уменьшенный размер шрифта */
         }
     
         button:hover {
@@ -51,39 +51,18 @@
         }
     
         p {
-            margin-top: 4px; /* Отступы в пикселях */
+            margin-top: 0.25rem; /* Уменьшенные отступы */
             font-weight: bold;
-            font-size: 16px; /* Размер шрифта по умолчанию */
+            font-size: 3vmax; /* Уменьшенный размер шрифта */
         }
     
-        /* Медиа-запросы для разных брейкпоинтов и изменение размеров шрифта в пикселях */
-        @media screen and (max-width: 784px) {
-            html {
-                font-size: 14px;
-            }
-    
-            h1 {
-                font-size: 24px;
-            }
-    
-            input,
-            button {
-                font-size: 14px;
-            }
-    
-            button {
-                padding: 6px;
-                margin-top: 6px;
-            }
-    
-            p {
-                font-size: 14px;
+        @media screen and (max-width: 360px) {
+            /* Дополнительные стили для устройств с шириной вьюпорта до 360px */
+            body {
+                padding: 0.25rem; /* Уменьшаем отступы */
             }
         }
     </style>
-    
-    
-    
     
     
     
